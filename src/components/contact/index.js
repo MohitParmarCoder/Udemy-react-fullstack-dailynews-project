@@ -2,8 +2,12 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Alert } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { sendMessage } from '../../store/actions';
+import { showToast } from '../utils/tools'
 
 const Contact = () => {
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues:{ email:'',firstname:'',lastname:'',message:''},
         validationSchema: Yup.object({
@@ -19,7 +23,14 @@ const Contact = () => {
             .max(500,'Sorry the message is too long'),
         }),
         onSubmit:(values,{resetForm})=>{
-            console.log(values);
+            dispatch(sendMessage(values)).then(({payload})=>{
+                if(payload){
+                    resetForm();
+                    showToast('SUCCESS','Thank you, we will contact you back')
+                } else {
+                    showToast('ERROR','Sorry something happened, try again.')
+                }
+            });
         }
     })
 
