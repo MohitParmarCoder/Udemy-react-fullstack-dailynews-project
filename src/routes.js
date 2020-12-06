@@ -3,6 +3,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import MainLayout from './hoc/mainLayout';
 
 import Home from './components/home';
+import Contact from './components/contact';
 import Header from './components/header';
 
 const Routes = () => (
@@ -10,6 +11,7 @@ const Routes = () => (
         <Header/>
         <MainLayout>
             <Switch>
+                <Route path="/contact" component={Contact}/>
                 <Route path="/" component={Home}/>
             </Switch>
         </MainLayout>
