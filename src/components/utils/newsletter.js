@@ -21,7 +21,8 @@ const NewsLetter = () => {
                 showToast('SUCCESS',"Thank you for subscribing !!!");
                 textInput.current.value = "";
                // dispatch(clearNewsletter())
-            } else{
+            } 
+            if(userData.newsletter === "failed"){
                 showToast('ERROR',"You are already on the DB");
                 textInput.current.value = "";
                // dispatch(clearNewsletter())
