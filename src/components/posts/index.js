@@ -1,6 +1,7 @@
 import React,{ useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPostById } from '../../store/actions'
+import { getPostById, clearPostById } from '../../store/actions';
+import { showToast } from '../utils/tools';
 
 import Moment from 'react-moment';
 import NewsLetter from '../utils/newsletter';
@@ -14,6 +15,19 @@ const PostComponent = (props) => {
     },[dispatch,props.match.params.id])
 
 
+    useEffect(()=>{
+        if(post.postById === '404'){
+            showToast('ERROR','The page you request in not available');
+            props.history.push('/');
+        }
+    },[post,props.history])
+
+
+    useEffect(()=>{
+        return () => {
+            dispatch(clearPostById())
+        }
+    },[dispatch])
 
 
     return(

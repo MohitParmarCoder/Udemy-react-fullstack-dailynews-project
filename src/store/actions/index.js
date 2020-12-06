@@ -3,7 +3,8 @@ import {
     GET_POSTS,
     ADD_NEWSLETTER,
     CLEAR_NEWSLETTER,
-    GET_POST_BY_ID
+    GET_POST_BY_ID,
+    CLEAR_POST_BY_ID
 } from '../types';
 
 
@@ -19,6 +20,11 @@ export const getPosts = (homePosts,page,order,limit) => ({
 export const getPostById = (id) => ({
     type: GET_POST_BY_ID,
     payload:api.getPostById(id)
+})
+
+export const clearPostById = () => ({
+    type: CLEAR_POST_BY_ID,
+    payload: {}
 })
 
 /*////////////////////////////////////
